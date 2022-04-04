@@ -17,8 +17,7 @@ name: Test Build (Short) (Linksys Devices)
     inputs:
       hardware:
         description: >
-          '[0] ALL [1] WRT3200ACM [2] WRT32X [3] WRT1200AC [4] WRT1900ACS V1 V2 [5]
-          WRT1900AC V1 [6] WRT1900AC V2'
+          '[0] ALL [1] R7800'
         required: true
         default: '1'
       source:
@@ -36,8 +35,8 @@ name: Test Build (Short) (Linksys Devices)
         required: true
         default: '0'
 env:
-  HARDWARE_ID: wrt3200acm
-  HARDWARE_DEVICE: wrt3200acm
+  HARDWARE_ID: r7800
+  HARDWARE_DEVICE: r7800
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
@@ -87,12 +86,12 @@ env:
   TARGZIP_PACKAGES: true
 ### -------------------- ###
 ### [ GITHUB PUSH ENV ] ###
-  SOURCE_DIRECTORY_A: "openwrt/bin/packages/arm_cortex-a9_vfpv3-d16"
-  SOURCE_DIRECTORY_B: "openwrt/bin/targets/mvebu/cortexa9/kmods/$KMOD_DIR"
-  DESTINATION_GITHUB_USERNAME: "DevOpenWRT-Router"
-  DESTINATION_REPOSITORY_NAME: "Linksys_OpenWRT_Releases"
-  USER_EMAIL: "BuildBot2021@gmail.com"
-  USER_NAME: "BuildBot2021"
+  SOURCE_DIRECTORY_A: "openwrt/bin/packages/arm_cortex-a15_neon-vfpv4"
+  SOURCE_DIRECTORY_B: "openwrt/bin/targets/ipq806x/generic/kmods/$KMOD_DIR"
+  DESTINATION_GITHUB_USERNAME: "PerkelSimon"
+  DESTINATION_REPOSITORY_NAME: "Action_OpenWRT_AutoBuild_Linksys_Devices"
+  USER_EMAIL: "shotojs@yahoo.ca"
+  USER_NAME: "PerkelSimon"
   DESTINATION_REPOSITORY_USERNAME: "DevOpenWRT-Router"
   TARGET_BRANCH: "main"
   COMMIT_MESSAGE: "Updated: $D"
@@ -260,13 +259,6 @@ jobs:
           cd openwrt
 
           $GITHUB_WORKSPACE/scripts/$DIY_P1_SH
-### ------------------------------------------------------------------------------ ###
-      - name: Load LUCI custom Themes
-        if: env.USE_CUST_THEMES == 'true' && !cancelled()
-        run: |
-          chmod +x scripts/luci_themes.sh
-          cd openwrt
-          $GITHUB_WORKSPACE/scripts/luci_themes.sh
 ### ------------------------------------------------------------------------------ ###
       - name: Set LUCI Source
         id: setLuci
