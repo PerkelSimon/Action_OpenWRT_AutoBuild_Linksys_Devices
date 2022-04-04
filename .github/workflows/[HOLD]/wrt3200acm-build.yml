@@ -10,7 +10,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt (Linksys Devices)
+name: Build OpenWrt (Ipq806x Devices)
 'on':
   repository_dispatch: null
   workflow_dispatch:
@@ -19,6 +19,6 @@ name: Build OpenWrt (Linksys Devices)
       - name: Set .config and assign hardware Device Tag
         id: setConfig
         run: |
-                  echo "::set-output name=hardwareString::wrt3200acm.config"
+                  echo "::set-output name=hardwareString::R7800.config"
                   echo "HARDWARE_DEVICE=wrt3200acm" >> $GITHUB_ENV
 ### ------------------------------------------------------------------------------ ###
