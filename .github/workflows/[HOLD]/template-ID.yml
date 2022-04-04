@@ -10,20 +10,13 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt (Linksys Devices)
+name: Build OpenWrt
 'on':
   repository_dispatch: null
   workflow_dispatch:
 
 env:
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  BEFORE_BUILD: before_build.sh
-  AFTER_BUILD: after_build.sh
-  KERNEL_VERSION: kernel_version.sh
-  GITHUB_RUN: github_push.sh
-  EXT_INIT_ENV: environment.sh
   USE_FILES: true
   USE_DIYP2: true
   USE_CUST_THEMES: true
